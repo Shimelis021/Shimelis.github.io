@@ -1,181 +1,599 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shimelis Agito - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        .skill-bar {
-            transition: width 1s ease-out;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#2563eb',
-                        'secondary': '#1d4ed8'
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shimelis Agito Dasho — Full-Stack &amp; AI Engineer</title>
+<meta name="description" content="Shimelis Agito Dasho — Full-Stack Software Engineer &amp; AI Systems Builder, trained as a civil/structural engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a2540;
+    --ink-deep:#071a30;
+    --panel:#0e3258;
+    --line:rgba(186,224,242,.16);
+    --line-strong:rgba(186,224,242,.34);
+    --text:#eaf4fa;
+    --text-dim:#8fb9cf;
+    --text-dimmer:#5f8aa3;
+    --accent:#ff7a33;
+    --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    --display:'Space Grotesk', 'Inter', sans-serif;
+    --body:'Inter', -apple-system, sans-serif;
+    --gap:clamp(1.1rem, 2vw, 1.6rem);
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; position:relative;
+    background:var(--ink-deep);
+    color:var(--text); font-family:var(--body); line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .container{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,46px); position:relative; z-index:1;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+    .reveal.in-view{opacity:1; transform:translateY(0);}
+    .ambient-scan{animation:scan 11s linear infinite;}
+  }
+  @keyframes scan{
+    0%{ transform:translateY(-10%); opacity:0; }
+    10%{ opacity:.4; } 50%{ opacity:.14; } 90%{ opacity:.4; }
+    100%{ transform:translateY(110%); opacity:0; }
+  }
+  .ambient-scan{
+    position:fixed; inset:0; height:160px; pointer-events:none; z-index:0;
+    background:linear-gradient(180deg, transparent, rgba(143,185,207,.35), transparent);
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:14px clamp(20px,5vw,46px);
+    background:rgba(7,26,48,.86); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .nav-logo{
+    font-family:var(--mono); font-size:13px; letter-spacing:.1em; color:var(--accent);
+    display:flex; align-items:center; gap:.5em;
+  }
+  .nav-logo::before{content:'';width:7px;height:7px;border:1px solid var(--accent);transform:rotate(45deg);}
+  .nav-links{display:flex; flex-wrap:wrap; gap:1.4em;}
+  .nav-links button{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--text-dim); transition:color .2s; background:none; border:none; padding:0; cursor:pointer;
+    font-weight:normal;
+  }
+  .nav-links button:hover{color:var(--accent);}
+  .nav-cta{flex-shrink:0;}
+
+  section{position:relative; z-index:1; padding:clamp(30px,4vw,48px) 0;}
+  section + section{border-top:1px solid var(--line-strong);}
+  .section-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 1.1rem; display:flex; align-items:center; gap:.6em;
+  }
+  .section-label::before{content:'';display:inline-block;width:7px;height:7px;border:1px solid var(--accent);transform:rotate(45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:clamp(46px,7vw,70px);}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--text-dim); margin:0 0 1.1rem; display:inline-flex; align-items:center; gap:.6em;
+  }
+  .eyebrow svg{width:14px;height:14px;}
+  h1{
+    font-family:var(--display); font-weight:700; font-size:clamp(2.5rem, 7vw, 4.4rem);
+    line-height:.98; letter-spacing:-.01em; margin:0 0 .5rem;
+  }
+  h1 span{color:var(--text-dim); font-weight:500;}
+  .role{font-family:var(--display); font-weight:600; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--accent); margin:0 0 1.2rem;}
+  .lede{max-width:640px; color:var(--text-dim); font-size:1.02rem; margin:0 0 1.6rem;}
+
+  .target-roles{display:flex; flex-wrap:wrap; gap:.5em; margin:0 0 1.8rem;}
+  .target-roles .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--text-dim); border:1px solid var(--line-strong); padding:.4em .8em; border-radius:2px;
+  }
+
+  .contact-row{display:flex; flex-wrap:wrap; gap:1.4em 1.8em; margin:0 0 1.5rem;}
+  .contact-row a, .contact-row span{display:inline-flex; align-items:center; gap:.55em; font-family:var(--mono); font-size:13px; color:var(--text-dim);}
+  .contact-row a:hover{color:var(--accent);}
+  .contact-row svg{width:15px;height:15px; flex-shrink:0; color:var(--accent);}
+
+  .links-row{display:flex; flex-wrap:wrap; gap:.8em; margin:0 0 2.2rem;}
+  .btn{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase;
+    padding:.7em 1.2em; border:1px solid var(--line-strong); border-radius:2px;
+    display:inline-flex; align-items:center; gap:.55em; transition:border-color .2s, color .2s, background .2s;
+  }
+  .btn svg{width:14px;height:14px;}
+  .btn:hover{border-color:var(--accent); color:var(--accent);}
+  .btn--solid{background:var(--accent); border-color:var(--accent); color:var(--ink-deep); font-weight:600;}
+  .btn--solid:hover{background:#ff8c4d; color:var(--ink-deep);}
+  .btn--sm{padding:.5em .9em; font-size:11px;}
+
+  .dimension-strip{border-top:1px dashed var(--line-strong); padding-top:1.1rem; display:flex; flex-wrap:wrap; gap:0;}
+  .dim{
+    position:relative; padding:0 1.05em 0 0; margin-right:1.05em; border-right:1px solid var(--line-strong);
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-dim);
+  }
+  .dim:last-child{border-right:none;}
+  .dim::before{content:'';position:absolute; top:-1.1rem; left:0; width:1px; height:.7rem; background:var(--line-strong);}
+
+  .profile p{max-width:680px; color:var(--text-dim); font-size:1rem; margin:0;}
+
+  .schedule-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:1px; border:1px solid var(--line-strong);}
+  .schedule-card{padding:1.2rem 1.3rem; border-right:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); background:var(--panel);}
+  .schedule-card h3{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 .8rem; padding-bottom:.6rem; border-bottom:1px solid var(--line);}
+  .chips{display:flex; flex-wrap:wrap; gap:.45em;}
+  .chip{font-family:var(--mono); font-size:12px; color:var(--text); border:1px solid var(--line-strong); padding:.32em .65em; border-radius:2px; transition:border-color .2s,color .2s;}
+  .chip:hover{border-color:var(--accent); color:var(--accent);}
+
+  .project-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:var(--gap);}
+  .project-card{border:1px solid var(--line-strong); padding:1.3rem 1.4rem; position:relative; transition:border-color .25s, transform .25s, background .25s;}
+  .project-card:hover{border-color:var(--accent); transform:translateY(-3px); background:rgba(255,122,51,.04);}
+  .detail-no{width:26px; height:26px; border:1px solid var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px; color:var(--accent); margin-bottom:.9rem;}
+  .project-card h3{font-family:var(--display); font-weight:600; font-size:1.05rem; margin:0 0 .5rem;}
+  .project-card p{color:var(--text-dim); font-size:.92rem; margin:0 0 1rem;}
+  .project-card .plink{display:inline-flex; align-items:center; gap:.4em; font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--accent);}
+  .project-card .plink svg{width:12px;height:12px;}
+  .project-card .plinks{display:flex; flex-wrap:wrap; gap:.7em; margin-top:.2rem;}
+  .status-tag{display:inline-flex; align-items:center; gap:.5em; font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:#ffc857; border:1px solid rgba(255,200,87,.4); padding:.4em .7em; border-radius:2px;}
+  .status-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:#ffc857; box-shadow:0 0 0 3px rgba(255,200,87,.18);}
+  .no-link{font-family:var(--mono); font-size:11px; color:var(--text-dimmer); text-transform:uppercase; letter-spacing:.04em;}
+  .tech-badges{display:flex; flex-wrap:wrap; gap:.35em; margin-bottom:.85rem;}
+  .tech-badge{font-family:var(--mono); font-size:10px; letter-spacing:.04em; text-transform:uppercase; color:var(--text-dimmer); border:1px solid var(--line); padding:.22em .55em; border-radius:2px;}
+
+  .role-card{display:flex; flex-wrap:wrap; gap:2.2rem;}
+  .role-card .who{min-width:220px;}
+  .role-card .who .pos{font-family:var(--display); font-weight:600; font-size:1.2rem; margin:0 0 .25rem;}
+  .role-card .who .org{color:var(--text-dim); font-family:var(--mono); font-size:12.5px;}
+  .role-list{list-style:none; margin:0; padding:0; flex:1; min-width:260px;}
+  .role-list li{position:relative; padding-left:1.2em; margin-bottom:.55em; color:var(--text-dim); font-size:.95rem;}
+  .role-list li::before{content:'—'; position:absolute; left:0; color:var(--accent);}
+
+  .rev-table{position:relative; padding-left:2.6rem;}
+  .rev-table::before{content:''; position:absolute; left:.85rem; top:6px; bottom:6px; width:1px; background:var(--line-strong);}
+  .rev-row{position:relative; display:flex; gap:1.1rem; margin-bottom:1.4rem; align-items:flex-start;}
+  .rev-row:last-child{margin-bottom:0;}
+  .rev-badge{position:absolute; left:-2.6rem; top:0; width:1.7rem; height:1.7rem; border:1px solid var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:12px; color:var(--accent); background:var(--ink); flex-shrink:0;}
+  .rev-row .rev-text strong{font-family:var(--display); font-weight:600; font-size:.98rem; display:block; margin-bottom:.15rem;}
+  .rev-row .rev-text span{color:var(--text-dim); font-size:.88rem;}
+
+  .check-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:.7rem 1.5rem;}
+  .check-list li{display:flex; gap:.7em; align-items:flex-start; color:var(--text-dim); font-size:.94rem;}
+  .check-list svg{width:16px;height:16px; flex-shrink:0; color:var(--accent); margin-top:.15em;}
+
+  .notes-grid{display:flex; flex-wrap:wrap; gap:2.5rem 3rem;}
+  .notes-col{flex:1; min-width:220px;}
+  .notes-col h3{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin:0 0 .8rem;}
+
+  .edu-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem;}
+  .edu-card{border-left:2px solid var(--accent); padding-left:1rem;}
+  .edu-card .deg{font-family:var(--display); font-weight:600; font-size:1rem; margin:0 0 .2rem;}
+  .edu-card .sch{color:var(--text-dim); font-family:var(--mono); font-size:12px;}
+
+  footer.contact{padding:0 0 0;}
+  .tb-grid{display:grid; grid-template-columns:1.4fr 1.4fr 1fr 1.2fr; border:1px solid var(--line-strong); margin-bottom:1.4rem;}
+  .tb-cell{border-right:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); padding:1.1rem 1.2rem;}
+  .tb-cell:last-child{border-right:none;}
+  .tb-cell .lbl{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dimmer); display:block; margin-bottom:.4rem;}
+  .tb-cell .val{font-family:var(--body); font-size:.92rem; color:var(--text);}
+  .tb-links{grid-column:1 / -1; display:flex; gap:.7em; flex-wrap:wrap; padding:1.1rem 1.2rem; border-bottom:none;}
+  .footer-end{display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; padding:1.4rem 0 2.4rem; font-family:var(--mono); font-size:10.5px; color:var(--text-dimmer); letter-spacing:.06em; text-transform:uppercase;}
+
+  @media (max-width: 680px){
+    .tb-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{order:3; width:100%; justify-content:center; padding-top:.6rem;}
+    .nav{flex-wrap:wrap;}
+  }
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800 leading-normal">
-<div class="container mx-auto px-4 max-w-4xl">
-    <header class="text-center py-16 animate-fade-in">
-        <h1 class="text-5xl font-bold text-primary mb-4">Shimelis Agito</h1>
-        <p class="text-xl text-gray-600">Software Developer | AI Enthusiast | Innovator</p>
-    </header>
+<body>
 
-    <nav class="sticky top-0 z-50 mb-8 bg-white shadow-lg rounded-lg">
-        <ul class="flex justify-center space-x-6 text-primary">
-            <li><a href="#about" class="block px-4 py-4 hover:text-secondary transition-colors">About</a></li>
-            <li><a href="#projects" class="block px-4 py-4 hover:text-secondary transition-colors">Projects</a></li>
-            <li><a href="#skills" class="block px-4 py-4 hover:text-secondary transition-colors">Skills</a></li>
-            <li><a href="#contact" class="block px-4 py-4 hover:text-secondary transition-colors">Contact</a></li>
+<div class="ambient-scan" aria-hidden="true"></div>
+
+<header class="nav">
+  <span class="nav-logo">S.A.D.</span>
+  <nav class="nav-links">
+    <button type="button" data-target="profile">Profile</button>
+    <button type="button" data-target="stack">Stack</button>
+    <button type="button" data-target="projects">Projects</button>
+    <button type="button" data-target="experience">Experience</button>
+    <button type="button" data-target="timeline">Timeline</button>
+    <button type="button" data-target="contact">Contact</button>
+  </nav>
+  <a class="btn btn--solid btn--sm nav-cta" href="mailto:shimelisa1g@gmail.com">Email</a>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero reveal" id="top">
+    <div class="container">
+      <p class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M12 3v18"/></svg>
+        Civil Engineer &rarr; Full-Stack &amp; AI Engineer
+      </p>
+      <h1>SHIMELIS<br><span>AGITO DASHO</span></h1>
+      <p class="role">Full-Stack Software Engineer &amp; AI Systems Builder</p>
+      <p class="lede">Trained and currently working as a structural/civil engineer, and self-driven into full-stack and AI software engineering. Designs and ships AI-powered applications, web platforms, mobile apps, desktop tools, and automation systems — bringing an engineer's discipline to scalable, dependable software.</p>
+
+      <div class="target-roles">
+        <span class="tag">Senior Full-Stack Developer</span>
+        <span class="tag">Technical Lead</span>
+        <span class="tag">AI Engineer</span>
+        <span class="tag">RL Environment Engineer</span>
+        <span class="tag">AI Automation Engineer</span>
+      </div>
+
+      <div class="contact-row">
+        <a href="mailto:shimelisa1g@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>
+          shimelisa1g@gmail.com
+        </a>
+        <a href="mailto:shimelisdasho@mtu.edu.et">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>
+          shimelisdasho@mtu.edu.et
+        </a>
+        <a href="tel:+251923070740">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>
+          +251 92 307 0740
+        </a>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          Tepi, Ethiopia
+        </span>
+      </div>
+
+      <div class="links-row">
+        <a class="btn btn--solid" href="mailto:shimelisa1g@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Email Me
+        </a>
+        <a class="btn" href="https://shimelis021.github.io/Shimelis.github.io/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5 3.2 9.3 7.8 10.8.6.1.8-.2.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.8-5.8 7.8-10.8C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.smartdailybudget.app" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3l16 9-16 9V3z"/></svg>
+          Google Play
+        </a>
+        <a class="btn" href="https://mywebsite.com.et" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          Website
+        </a>
+      </div>
+
+      <div class="dimension-strip">
+        <span class="dim">Python</span>
+        <span class="dim">Full-Stack Development</span>
+        <span class="dim">AI &amp; LLM Integration</span>
+        <span class="dim">Docker</span>
+        <span class="dim">Reinforcement Learning</span>
+        <span class="dim">Technical Leadership</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="profile reveal" id="profile">
+    <div class="container">
+      <h2 class="section-label">Profile Notes</h2>
+      <p>Full-Stack Software Engineer and Civil Engineer with hands-on experience designing and building AI-powered applications, web applications, mobile applications, desktop software, and automation systems. Comfortable across Python, AI agents, reinforcement-learning environments, Docker, GitHub, REST APIs, and cloud deployment. Brings an engineer's rigor — the kind built from structural design and site supervision — to scalable, dependable software, and stays current with emerging AI technologies.</p>
+    </div>
+  </section>
+
+  <!-- TECH SPEC SCHEDULE -->
+  <section class="stack reveal" id="stack">
+    <div class="container">
+      <h2 class="section-label">Technical Specification Schedule</h2>
+      <div class="schedule-grid">
+        <div class="schedule-card">
+          <h3>Languages</h3>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span>
+            <span class="chip">Dart</span><span class="chip">Java</span><span class="chip">Kotlin</span>
+            <span class="chip">C#</span><span class="chip">PHP</span><span class="chip">Go</span><span class="chip">SQL</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>Frontend</h3>
+          <div class="chips">
+            <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">HTML5</span>
+            <span class="chip">CSS3</span><span class="chip">Tailwind CSS</span><span class="chip">Bootstrap</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>Backend</h3>
+          <div class="chips">
+            <span class="chip">Node.js</span><span class="chip">NestJS</span><span class="chip">Express.js</span>
+            <span class="chip">Laravel</span><span class="chip">FastAPI</span><span class="chip">Flask</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>Mobile</h3>
+          <div class="chips">
+            <span class="chip">Flutter</span><span class="chip">React Native</span>
+            <span class="chip">Android Studio</span><span class="chip">Kotlin</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>AI &amp; Machine Learning</h3>
+          <div class="chips">
+            <span class="chip">OpenAI API</span><span class="chip">Claude API</span><span class="chip">LLM Integration</span>
+            <span class="chip">Prompt Engineering</span><span class="chip">AI Agents</span><span class="chip">Automation</span>
+            <span class="chip">RL Fundamentals</span><span class="chip">Browser Automation</span><span class="chip">Playwright</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>Databases</h3>
+          <div class="chips">
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">SQLite</span><span class="chip">Firebase</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>Cloud &amp; DevOps</h3>
+          <div class="chips">
+            <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Git</span>
+            <span class="chip">GitHub</span><span class="chip">AWS Deployment</span><span class="chip">Linux</span>
+            <span class="chip">Vercel</span><span class="chip">Plesk cPanel</span><span class="chip">Shared Hosting</span>
+          </div>
+        </div>
+        <div class="schedule-card">
+          <h3>Other</h3>
+          <div class="chips">
+            <span class="chip">REST API</span><span class="chip">JSON</span><span class="chip">JWT</span>
+            <span class="chip">GitHub Actions</span><span class="chip">API Integration</span>
+            <span class="chip">System Design</span><span class="chip">Agile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects reveal" id="projects">
+    <div class="container">
+      <h2 class="section-label">Project Details</h2>
+      <div class="project-grid">
+
+        <!-- 1 -->
+        <div class="project-card">
+          <div class="detail-no">1</div>
+          <h3>RL Web Automation Environment</h3>
+          <div class="tech-badges">
+            <span class="tech-badge">Python</span><span class="tech-badge">Playwright</span><span class="tech-badge">Gymnasium</span><span class="tech-badge">Docker</span>
+          </div>
+          <p>A reinforcement-learning environment for browser automation built with Python and Playwright. Gymnasium-compatible, with reward functions, an evaluation pipeline, a rule-based agent, Docker support, tests, and documentation.</p>
+          <a class="plink" href="https://shimelis021.github.io/Shimelis.github.io/" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- 2 -->
+        <div class="project-card">
+          <div class="detail-no">2</div>
+          <h3>Smart Daily Budget</h3>
+          <div class="tech-badges">
+            <span class="tech-badge">Flutter</span><span class="tech-badge">Dart</span><span class="tech-badge">Android</span><span class="tech-badge">SQLite</span>
+          </div>
+          <p>A published Android expense-tracking application with a modern UI, offline storage, and day-to-day budgeting features. Available on Google Play.</p>
+          <a class="plink" href="https://play.google.com/store/apps/details?id=com.smartdailybudget.app" target="_blank" rel="noopener">
+            View on Google Play
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- 3 -->
+        <div class="project-card">
+          <div class="detail-no">3</div>
+          <h3>Sheka Zone Police — Human Resource Management System</h3>
+          <div class="tech-badges">
+            <span class="tech-badge">React</span><span class="tech-badge">Node.js</span><span class="tech-badge">PostgreSQL</span><span class="tech-badge">Vercel</span>
+          </div>
+          <p>A full Human Resource Management System (HRMIS) built for the Sheka Zone Police. Covers officer records, personnel administration, leave management, reporting, and role-based access control.</p>
+          <a class="plink" href="https://sheka-hrmis.vercel.app/" target="_blank" rel="noopener">
+            View Live
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- 4 -->
+        <div class="project-card">
+          <div class="detail-no">4</div>
+          <h3>Tepi Polytechnic College — Store &amp; Inventory Management System</h3>
+          <div class="tech-badges">
+            <span class="tech-badge">React</span><span class="tech-badge">Node.js</span><span class="tech-badge">MySQL</span><span class="tech-badge">Vercel</span>
+          </div>
+          <p>A comprehensive store and inventory management system for Tepi Polytechnic College, covering asset registration, stock tracking, procurement records, departmental issuance, and administrative reporting.</p>
+          <a class="plink" href="https://tpsimsapp12.vercel.app/dashboard" target="_blank" rel="noopener">
+            View Live
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- 5 -->
+        <div class="project-card">
+          <div class="detail-no">5</div>
+          <h3>Personal Business Website</h3>
+          <div class="tech-badges">
+            <span class="tech-badge">Laravel</span><span class="tech-badge">PHP</span><span class="tech-badge">MySQL</span><span class="tech-badge">Plesk cPanel</span><span class="tech-badge">Ethio Telecom</span>
+          </div>
+          <p>A professional business website developed using Laravel and PHP, deployed on Plesk cPanel with a custom domain and hosting purchased from Ethio Telecom. Showcases services, portfolio work, and contact information.</p>
+          <a class="plink" href="https://mywebsite.com.et" target="_blank" rel="noopener">
+            View Live
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- 6 -->
+        <div class="project-card">
+          <div class="detail-no">6</div>
+          <h3>BOQ &amp; Estimation Software</h3>
+          <div class="tech-badges">
+            <span class="tech-badge">C#</span><span class="tech-badge">Desktop</span><span class="tech-badge">Android</span>
+          </div>
+          <p>Desktop software for quantity takeoff, Bill of Quantity preparation, and cost estimation on civil engineering projects. An Android version is currently in testing.</p>
+          <span class="status-tag">APK ready &middot; pending Google Play release</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT ROLE -->
+  <section class="experience reveal" id="experience">
+    <div class="container">
+      <h2 class="section-label">Current Position</h2>
+      <div class="role-card">
+        <div class="who">
+          <p class="pos">Lecturer</p>
+          <p class="org">Civil Engineering Department<br>Mizan-Tepi University</p>
+        </div>
+        <ul class="role-list">
+          <li>Teaching undergraduate engineering courses</li>
+          <li>Research supervision</li>
+          <li>Software development projects</li>
+          <li>Engineering consulting</li>
+          <li>Student project supervision</li>
         </ul>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <section id="about" class="mb-12 bg-white p-8 rounded-xl shadow-lg transform hover:scale-[1.02] transition-transform">
-            <h2 class="text-3xl font-semibold mb-6 text-primary">About Me</h2>
-            <p class="text-gray-700 leading-relaxed">I am a passionate software developer with experience in AI, web development, and automation. I specialize in building scalable web applications using Laravel, WordPress, and modern frontend technologies. My focus is on creating efficient, user-friendly solutions that solve real-world problems.</p>
-        </section>
+  <!-- REVISION HISTORY -->
+  <section class="revision-history reveal" id="timeline">
+    <div class="container">
+      <h2 class="section-label">Revision History — Career Timeline</h2>
+      <div class="rev-table">
+        <div class="rev-row">
+          <div class="rev-badge">A</div>
+          <div class="rev-text"><strong>BSc, Civil Engineering</strong><span>Mizan-Tepi University</span></div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-badge">B</div>
+          <div class="rev-text"><strong>MSc</strong><span>Jimma University</span></div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-badge">C</div>
+          <div class="rev-text"><strong>Lecturer, Civil Engineering Department</strong><span>Mizan-Tepi University — current position</span></div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-badge">D</div>
+          <div class="rev-text"><strong>Self-driven pivot into full-stack &amp; AI engineering</strong><span>Python, AI agents, RL environments, Docker, full-stack web &amp; mobile apps — built and shipped alongside the academic role</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section id="projects" class="mb-12">
-            <h2 class="text-3xl font-semibold mb-6 text-primary">Projects</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-semibold text-primary mb-2">Sheka Zone Website</h3>
-                    <p class="text-gray-600 mb-4">A comprehensive web platform built with Laravel and Filament, featuring advanced admin dashboard and community engagement tools.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Laravel</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Filament</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">PHP</span>
-                    </div>
-                </div>
+  <!-- ACHIEVEMENTS -->
+  <section class="achievements reveal">
+    <div class="container">
+      <h2 class="section-label">Verified Outcomes</h2>
+      <ul class="check-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Built multiple web applications from concept to deployment</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Published Android applications to Google Play</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Developed AI-powered automation projects</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Integrated third-party APIs and AI services into working systems</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Containerized and version-controlled projects with Docker and GitHub</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Designed and deployed live inventory and management systems for institutions</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Built and deployed a custom business website on a live domain with Plesk cPanel</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Delivered a HRMIS for a government institution (Sheka Zone Police)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Built across Python, PHP (Laravel), and modern JavaScript/TypeScript stacks</li>
+      </ul>
+    </div>
+  </section>
 
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-semibold text-primary mb-2">Healthcare Management System</h3>
-                    <p class="text-gray-600 mb-4">A comprehensive healthcare solution for managing patient records, appointments, and medical history.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Healthcare</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Database</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Security</span>
-                    </div>
-                </div>
+  <!-- EDUCATION -->
+  <section class="education reveal">
+    <div class="container">
+      <h2 class="section-label">Education</h2>
+      <div class="edu-grid">
+        <div class="edu-card"><p class="deg">Master of Science (MSc)</p><p class="sch">Jimma University</p></div>
+        <div class="edu-card"><p class="deg">Bachelor of Science (BSc), Civil Engineering</p><p class="sch">Mizan-Tepi University</p></div>
+        <div class="edu-card"><p class="deg">Full-Stack Web Development</p><p class="sch">Udemy — Certificate of Completion</p></div>
+        <div class="edu-card"><p class="deg">Fundamentals of Programming</p><p class="sch">Udemy — Certificate of Completion</p></div>
+        <div class="edu-card"><p class="deg">Android Development</p><p class="sch">Udacity — Certificate of Completion</p></div>
+        <div class="edu-card"><p class="deg">AI Agent Development</p><p class="sch">Amazon Web Services (AWS) — Certificate of Completion</p></div>
+        <div class="edu-card"><p class="deg">Machine Learning &amp; Deep Learning</p><p class="sch">Amazon Web Services (AWS) — Certificate of Completion</p></div>
+        <div class="edu-card"><p class="deg">CS50: Introduction to Computer Science</p><p class="sch">Harvard University — Online Certificate</p></div>
+      </div>
+    </div>
+  </section>
 
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-semibold text-primary mb-2">WordPress Plugin</h3>
-                    <p class="text-gray-600 mb-4">Custom WordPress plugin development for enhanced functionality and user experience.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">WordPress</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">PHP</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">JavaScript</span>
-                    </div>
-                </div>
+  <!-- NOTES -->
+  <section class="notes reveal">
+    <div class="container">
+      <h2 class="section-label">General Notes</h2>
+      <div class="notes-grid">
+        <div class="notes-col">
+          <h3>Soft Skills</h3>
+          <div class="chips">
+            <span class="chip">Leadership</span><span class="chip">Problem Solving</span><span class="chip">Communication</span>
+            <span class="chip">Critical Thinking</span><span class="chip">Team Collaboration</span><span class="chip">Fast Learner</span>
+            <span class="chip">Analytical Thinking</span><span class="chip">Technical Documentation</span><span class="chip">Project Management</span>
+          </div>
+        </div>
+        <div class="notes-col">
+          <h3>Languages</h3>
+          <div class="chips"><span class="chip">English</span><span class="chip">Amharic</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-semibold text-primary mb-2">CryptoVault</h3>
-                    <p class="text-gray-600 mb-4">A blockchain-based security application for secure cryptocurrency transactions.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Blockchain</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Security</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Crypto</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- CONTACT / FOOTER -->
+  <footer class="contact reveal" id="contact">
+    <div class="container">
+      <h2 class="section-label">Contact</h2>
+      <div class="tb-grid">
+        <div class="tb-cell"><span class="lbl">Name</span><span class="val">Shimelis Agito Dasho</span></div>
+        <div class="tb-cell"><span class="lbl">Title</span><span class="val">Full-Stack &amp; AI Software Engineer / Civil Engineer</span></div>
+        <div class="tb-cell"><span class="lbl">Location</span><span class="val">Tepi, Ethiopia</span></div>
+        <div class="tb-cell"><span class="lbl">Phone</span><span class="val">+251 92 307 0740</span></div>
+        <div class="tb-links">
+          <a class="btn" href="https://shimelis021.github.io/Shimelis.github.io/" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.smartdailybudget.app" target="_blank" rel="noopener">Google Play</a>
+          <a class="btn" href="https://mywebsite.com.et" target="_blank" rel="noopener">mywebsite.com.et</a>
+          <a class="btn btn--solid" href="mailto:shimelisa1g@gmail.com">Email</a>
+        </div>
+      </div>
+      <div class="footer-end">
+        <span>&copy; Shimelis Agito Dasho</span>
+        <span>Built with intent &middot; Tepi, Ethiopia</span>
+      </div>
+    </div>
+  </footer>
 
-        <section id="skills" class="mb-12 bg-white p-8 rounded-xl shadow-lg">
-            <h2 class="text-3xl font-semibold mb-6 text-primary">Skills</h2>
-            <div class="space-y-6">
-                <div>
-                    <h3 class="font-medium mb-4 text-lg">Programming Languages</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Python</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>JavaScript</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="h-2 bg-gray-200 rounded-full">
-                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="font-medium mb-4 text-lg">Technologies</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">Laravel</span>
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">Filament</span>
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">WordPress</span>
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">MySQL</span>
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">React</span>
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-lg">API Development</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="mb-12 bg-white p-8 rounded-xl shadow-lg">
-            <h2 class="text-3xl font-semibold mb-6 text-primary">Contact</h2>
-            <div class="space-y-4">
-                <a href="mailto:shimelisa1g@gmail.com" class="flex items-center space-x-3 text-gray-600 hover:text-primary transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                    <span>shimelisa1g@gmail.com</span>
-                </a>
-                <a href="tel:+251923070740" class="flex items-center space-x-3 text-gray-600 hover:text-primary transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                    </svg>
-                    <span>+251 923070 740</span>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="text-center py-8 text-gray-600">
-        <p>&copy; 2025 Shimelis Agito. All rights reserved.</p>
-    </footer>
-</div>
+</main>
 
 <script>
-    // Animate skill bars on scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.width = entry.target.getAttribute('data-width');
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.skill-bar').forEach(bar => {
-        bar.style.width = '0';
-        bar.setAttribute('data-width', bar.style.width);
-        observer.observe(bar);
+  document.querySelectorAll('.nav-links button[data-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.getAttribute('data-target'));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+    document.querySelector('.ambient-scan')?.remove();
+  }
 </script>
+
 </body>
 </html>
